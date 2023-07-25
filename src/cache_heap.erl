@@ -57,7 +57,7 @@ init(#heap{type = Type, n = N, ttl = TTL} = Heap) ->
    T = cache_util:now(),
    Segments = lists:map(
       fun(Expire) ->
-         Ref = ets:new(undefined, [Type, protected]),
+         Ref = ets:new(undefined, [Type, protected, {read_concurrency, true}]),
          {T + Expire, Ref}
       end,
       lists:seq(TTL, N * TTL, TTL)
@@ -152,7 +152,7 @@ is_expired_head(#heap{cardinality = Card, memory = Mem, segments = Segments}) ->
 
 heap_create_segment(#heap{type = Type, ttl = TTL, segments = Segments} = Heap) ->
    {LastTTL, _} = queue:last(Segments),
-   Ref    = ets:new(undefined, [Type, protected]),
+   Ref    = ets:new(undefined, [Type, protected, {read_concurrency, true}]),
    Expire = TTL + LastTTL,
    Heap#heap{segments = queue:in({Expire, Ref}, Segments)}.
 

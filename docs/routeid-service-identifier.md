@@ -19,8 +19,10 @@ Bo is running, not an individual via-route segment.
 
 ## Visual 1: routeid groups by service
 
-![Each service owns one routeid shared by all of its via-routes](assets/routeid-service-groups.svg)
+![Each service owns one routeid shared by all of its via-routes](assets/routeid-service-groups.png)
 
 ## Visual 2: uniqueness rule
 
-![Different services must not share the same routeid](assets/routeid-unique-rule.svg)
+![Different services must not share the same routeid](assets/routeid-unique-rule.png)
+
+Editable SVG source files are kept next to the PNGs in `docs/assets/`.

@@ -121,6 +121,17 @@ get(_Config) ->
    val = cache:get(Cache, key2),
    undefined = cache:get(Cache, unknown),
    ok = cache:drop(Cache).
+
+routeid(_Config) ->
+   {ok, Cache} = cache:start_link([]),
+   Route = #{
+      routeid => 1,
+      stops => [<<"Mumbai">>, <<"Pune">>, <<"Goa">>],
+      departure => <<"09:00">>
+   },
+   ok = cache:put(Cache, {routeid, 1}, Route),
+   Route = cache:get(Cache, {routeid, 1}),
+   ok = cache:drop(Cache).
       
 lookup(_Config) ->
    {ok, Cache} = cache:start_link([]),

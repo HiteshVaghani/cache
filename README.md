@@ -77,6 +77,19 @@ ok  = cache:put(my_cache, <<"my key">>, <<"my value">>).
 Val = cache:get(my_cache, <<"my key">>).
 ```
 
+Application data can use structured keys to address domain identifiers:
+
+```erlang
+Route = #{routeid => 1,
+          stops => [<<"Mumbai">>, <<"Pune">>, <<"Goa">>],
+          departure => <<"09:00">>},
+ok = cache:put(my_cache, {routeid, 1}, Route),
+Route = cache:get(my_cache, {routeid, 1}).
+```
+
+For a simple explanation of service-level route IDs and via-route grouping, see
+the [routeid service identifier visuals](docs/routeid-service-identifier.md).
+
 
 ### asynchronous i/o
 

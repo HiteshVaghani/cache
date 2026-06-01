@@ -87,6 +87,9 @@ ok = cache:put(my_cache, {routeid, 1}, Route),
 Route = cache:get(my_cache, {routeid, 1}).
 ```
 
+For a simple explanation of service-level route IDs and via-route grouping, see
+the [routeid service identifier visuals](docs/routeid-service-identifier.md).
+
 
 ### asynchronous i/o
 
